@@ -40,8 +40,8 @@ lesson. Let's reopen and read in the data again:
 # Make sure pandas is loaded
 import pandas as pd
 
-# read in the survey csv
-surveys_df = pd.read_csv("surveys.csv")
+# Read in the survey CSV
+surveys_df = pd.read_csv("data/surveys.csv")
 ```
 
 ## Indexing and Slicing in Python
@@ -64,13 +64,13 @@ surveys_df['species_id']
 
 # Method 2: use the column name as an 'attribute'; gives the same output
 surveys_df.species_id
-``` 
+```
 
 We can also create a new object that contains only the data within the
 `species_id` column as follows:
 
 ```python
-# creates an object, surveys_species, that only contains the `species_id` column
+# Creates an object, surveys_species, that only contains the `species_id` column
 surveys_species = surveys_df['species_id']
 ```
 
@@ -78,16 +78,16 @@ We can pass a list of column names too, as an index to select columns in that
 order. This is useful when we need to reorganize our data.
 
 **NOTE:** If a column name is not contained in the DataFrame, an exception
-(error) will be raised. 
+(error) will be raised.
 
 ```python
-# select the species and plot columns from the DataFrame
+# Select the species and plot columns from the DataFrame
 surveys_df[['species_id', 'plot_id']]
 
-# what happens when you flip the order?
+# What happens when you flip the order?
 surveys_df[['plot_id', 'species_id']]
 
-#what happens if you ask for a column that doesn't exist?
+# What happens if you ask for a column that doesn't exist?
 surveys_df['speciess']
 ```
 
@@ -144,7 +144,7 @@ output. The stop bound is one step BEYOND the row you want to select. So if you
 want to select rows 0, 1 and 2 your code would look like this:
 
 ```python
-# select rows 0, 1, 2 (row 3 is not selected)
+# Select rows 0, 1, 2 (row 3 is not selected)
 surveys_df[0:3]
 ```
 
@@ -152,12 +152,11 @@ The stop bound in Python is different from what you might be used to in
 languages like Matlab and R.
 
 ```python
-# select the first 5 rows (rows 0, 1, 2, 3, 4)
+# Select the first 5 rows (rows 0, 1, 2, 3, 4)
 surveys_df[:5]
 
-# select the last element in the list
-# (the slice starts at the last element,
-# and ends at the end of the list)
+# Select the last element in the list
+# (the slice starts at the last element, and ends at the end of the list)
 surveys_df[-1:]
 ```
 
@@ -171,10 +170,10 @@ copying objects and the concept of referencing objects in Python.
 Let's start with an example:
 
 ```python
-# using the 'copy() method'
+# Using the 'copy() method'
 true_copy_surveys_df = surveys_df.copy()
 
-# using '=' operator
+# Using the '=' operator
 ref_surveys_df = surveys_df
 ```
 
@@ -191,19 +190,19 @@ DataFrame.
 Let's look at what happens when we reassign the values within a subset of the
 DataFrame that references another DataFrame object:
 
-   ```
-    # Assign the value `0` to the first three rows of data in the DataFrame
-    ref_surveys_df[0:3] = 0
-    ```
+```python
+# Assign the value `0` to the first three rows of data in the DataFrame
+ref_surveys_df[0:3] = 0
+```
 
 Let's try the following code:
 
-    ```
-   # ref_surveys_df was created using the '=' operator
-    ref_surveys_df.head()
+```python
+# ref_surveys_df was created using the '=' operator
+ref_surveys_df.head()
 
-    # surveys_df is the original dataframe
-    surveys_df.head()
+# surveys_df is the original dataframe
+surveys_df.head()
 ```
 
 What is the difference between these two dataframes?
@@ -219,20 +218,20 @@ the other will see the same changes to the reference object.
 
 - **Copy** uses the dataframe's `copy()` method
 
-    ```
-    true_copy_surveys_df = surveys_df.copy()
-    ```
+  ```python
+  true_copy_surveys_df = surveys_df.copy()
+  ```
 - A **Reference** is created using the `=` operator
 
-    ```python
-    ref_surveys_df = surveys_df
-    ```
+  ```python
+  ref_surveys_df = surveys_df
+  ```
 
 Okay, that's enough of that. Let's create a brand new clean dataframe from
 the original data CSV file.
 
 ```python
-surveys_df = pd.read_csv("surveys.csv")
+surveys_df = pd.read_csv("data/surveys.csv")
 ```
 
 ## Slicing Subsets of Rows and Columns in Python
@@ -269,10 +268,10 @@ ask for 0:3, you are actually telling Python to start at index 0 and select rows
 Let's explore some other ways to index and select subsets of data:
 
 ```python
-# select all columns for rows of index values 0 and 10
+# Select all columns for rows of index values 0 and 10
 surveys_df.loc[[0, 10], :]
 
-# what does this do?
+# What does this do?
 surveys_df.loc[0, ['species_id', 'plot_id', 'weight']]
 
 # What happens when you type the code below?
@@ -416,13 +415,13 @@ we also need to understand `BOOLEAN` objects in Python.
 Boolean values include `True` or `False`. For example,
 
 ```python
-# set x to 5
+# Set x to 5
 x = 5
 
-# what does the code below return?
+# What does the code below return?
 x > 5
 
-# how about this?
+# How about this?
 x == 5
 ```
 
@@ -474,7 +473,7 @@ values. We will explore ways of dealing with this in Lesson 03.
 We can run `isnull` on a particular column too. What does the code below do?
 
 ```python
-# what does this do?
+# What does this do?
 empty_weights = surveys_df[pd.isnull(surveys_df['weight'])]['weight']
 print(empty_weights)
 ```

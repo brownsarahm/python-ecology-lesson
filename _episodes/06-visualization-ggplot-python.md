@@ -225,9 +225,11 @@ hidden.
 >
 > - Add color to the datapoints on your boxplot according to the plot from which
 >   the sample was taken (`plot_id`)
+>
+> Hint: Check the class for `plot_id`. Consider changing the class of `plot_id`
+> from integer to factor. Why does this change how R makes the graph?
+{: .challenge}
 
-Hint: Check the class for `plot_id`. Consider changing the class of `plot_id`
-from integer to factor. Why does this change how R makes the graph?
 
 
 
@@ -269,7 +271,7 @@ ggplot(aes(x = 'species_factor', y = 'hindfoot_length'),data = surveys_complete)
         scale_x_discrete(breaks=xcodes, labels=xlabels) + \
                          xlab('species_id') + geom_boxplot(alpha=0) + \
             scale_y_log(base=10)
-            
+
 ```
 
 
@@ -285,7 +287,7 @@ ggplot(aes(x = 'species_factor', y = 'hindfoot_length', color='plot_id'),data = 
         scale_x_discrete(breaks=xcodes, labels=xlabels) + \
                          xlab('species_id') + geom_boxplot(alpha=0) + \
             scale_y_log(base=10)
-     
+
 ```
 
 
@@ -401,7 +403,7 @@ are already in separate plots, so we don't need to distinguish them further).
 ggplot(aes(x = "year", y = "n", color = "sex", group = "sex"), data = yearly_sex_counts) + \
     geom_line() + \
     facet_wrap("species_id") + \
-    theme_bw() 
+    theme_bw()
 ```
 
 
@@ -495,7 +497,7 @@ ggplot( aes(x = "year", y = "n", color = "sex", group = "sex"),data = yearly_sex
     labs(title = 'Observed species in time',
          x = 'Year of observation',
          y = 'Number of species') + \
-    theme_bw() 
+    theme_bw()
 ```
 
 
@@ -537,7 +539,7 @@ ggplot( aes(x = "year", y = "n", color = "sex", group = "sex"),data = yearly_sex
     theme_bw() + \
     theme(axis_text_x = element_text(color="grey", size=10, angle=90, hjust=.5, vjust=.5),
           axis_text_y = element_text(color="grey", size=10, hjust=0),
-         ) 
+         )
 ```
 
 
@@ -576,13 +578,13 @@ adjusting the appropriate arguments (`width`, `height` and `dpi`):
 
 
 ```python
-my_plot =  ggplot(yearly_sex_counts, aes(x = "year", y = "n", color = "sex", group = "sex")) 
-my_plot += geom_line() 
-my_plot += facet_wrap("species_id") 
+my_plot =  ggplot(yearly_sex_counts, aes(x = "year", y = "n", color = "sex", group = "sex"))
+my_plot += geom_line()
+my_plot += facet_wrap("species_id")
 my_plot += labs(title = 'Observed species in time',
                 x = 'Year of observation',
-                y = 'Number of species') 
-my_plot += theme_bw() 
+                y = 'Number of species')
+my_plot += theme_bw()
 my_plot += theme(axis_text_x = element_text(color="grey", size=10, angle=90, hjust=.5, vjust=.5),
                         axis_text_y = element_text(color="grey", size=10))
 my_plot.save("name_of_file.png", width=15, height=10)
